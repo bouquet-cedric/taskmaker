@@ -16,7 +16,7 @@ B_RIGHT_ID = "btn_right";
 FOND_TASK = "bisque";
 BG_LEFT = "darkred";
 BG_RIGHT = "darkblue";
-LOGO_COLOR = "bleu";
+LOGO_COLOR = "blue";
 
 //      etats
 FINI = "green";

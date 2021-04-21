@@ -494,6 +494,7 @@ function logo() {
     divName.style.border = "1px dashed"
     divName.style.whiteSpace = "pre";
     divName.style.fontFamily = "monospace";
+    divName.style.fontWeight = "bold";
     divName.textContent = nameProduct();
     document.body.appendChild(divName);
     divName.style.bottom = "0";

@@ -223,6 +223,7 @@ function testConfig() {
     test("FOND_TASK", checkColor);
     test("BG_LEFT", checkColor);
     test("BG_RIGHT", checkColor);
+    test("LOGO_COLOR", checkColor);
     test("COMMENCE", checkColor);
     test("ATTENTE", checkColor);
     test("SKIP", checkColor);
@@ -500,7 +501,7 @@ function logo() {
     document.body.appendChild(divName);
     divName.style.bottom = "0";
     divName.style.right = "0";
-    divName.style.backgroundColor = "rgb(100,40,70)";
+    divName.style.backgroundColor = LOGO_COLOR;
 }
 
 window.onload = function() {

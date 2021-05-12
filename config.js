@@ -13,10 +13,10 @@ B_RIGHT_ID = "btn_right";
 // COULEURS
 
 //      arrieres-plans
-FOND_TASK = "bisque";
+FOND_TASK = "slategrey";
 BG_LEFT = "darkred";
 BG_RIGHT = "darkblue";
-LOGO_COLOR = "grey";
+LOGO_COLOR = "royalblue";
 
 //      etats
 FINI = "green";
@@ -27,4 +27,4 @@ DEFAULT = "black";
 
 //      taches
 JOUR = "royalblue";
-FLECHE = "red";
+FLECHE = "white";

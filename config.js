@@ -17,6 +17,7 @@ FOND_TASK = "black";
 BG_LEFT = "black";
 BG_RIGHT = "black";
 LOGO_COLOR = "royalblue";
+BG_LINK = "black";
 
 //      etats
 FINI = "green";
@@ -27,5 +28,5 @@ DEFAULT = "lightgrey";
 
 //      taches
 TITRE = "white";
-JOUR = "lightyellow";
+JOUR = "yellow";
 FLECHE = "white";

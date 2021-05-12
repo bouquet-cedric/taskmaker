@@ -230,6 +230,8 @@ function testConfig() {
     test("BG_RIGHT", checkColor);
     test("LOGO_COLOR", checkColor);
     test("BG_LINK", checkColor);
+    test("BG_PAGE", checkColor);
+    test("FINI", checkColor);
     test("COMMENCE", checkColor);
     test("ATTENTE", checkColor);
     test("SKIP", checkColor);
@@ -438,6 +440,7 @@ function styleLien() {
 }
 
 function stylize() {
+    document.body.style.backgroundColor = BG_PAGE;
     let task = document.getElementById(DIV_TASK_ID);
     let link = document.getElementById(LINK_ID);
 

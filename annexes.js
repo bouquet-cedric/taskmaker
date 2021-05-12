@@ -8,7 +8,7 @@ const Etat = {
     COMMENCE: "C",
     ATTENTE: "A",
     SKIP: "S",
-    DEFAULT : "D";
+    DEFAULT : "D",
     get(letter) {
         switch (letter) {
             case "F":

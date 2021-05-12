@@ -21,6 +21,7 @@ const Etat = {
             default:
                 return DEFAULT;
         }
+        return DEFAULT;
     }
 }
 

@@ -177,9 +177,9 @@ function checkOnOff(v) {
 
 function checkColor(v) {
     var tmp = document.createElement("span");
-    tmp.style.color = "black";
+    tmp.style.color = DEFAULT;
     tmp.style.color = v;
-    if (v != "black" && tmp.style.color == "black")
+    if (v != DEFAULT && tmp.style.color == DEFAULT)
         throw new IllegalValue(v, ["rgb(0,0,0)", "blue"], "color");
     return true;
 }
@@ -232,8 +232,10 @@ function testConfig() {
     test("ATTENTE", checkColor);
     test("SKIP", checkColor);
     test("DEFAULT", checkColor);
+    test("TITRE", checkColor);
     test("JOUR", checkColor);
     test("FLECHE", checkColor);
+    
 }
 
 function gereNum() {
@@ -343,6 +345,7 @@ function styleTitre(titreTag) {
     var titre = document.getElementsByTagName(titreTag);
     for (let i = 0; i < titre.length; i++) {
         titre[i].style.textAlign = "center";
+        titre[i].style.color=TITRE;
         if (titreTag == "h2") {
             titre[i].style.marginTop = "0";
             titre[i].style.marginBottom = "0";
@@ -362,7 +365,7 @@ function styleJour() {
     for (let i = 0; i < days.length; i++) {
         days[i].style.color = JOUR;
         days[i].style.fontFamily = "cursive";
-        days[i].style.textDecoration = "underline solid black";
+        days[i].style.textDecoration = "underline solid "+JOUR;
     }
 }
 

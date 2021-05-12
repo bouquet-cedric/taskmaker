@@ -13,9 +13,9 @@ B_RIGHT_ID = "btn_right";
 // COULEURS
 
 //      arrieres-plans
-FOND_TASK = "lightgrey";
-BG_LEFT = "transparent";
-BG_RIGHT = "transparent";
+FOND_TASK = "black";
+BG_LEFT = "black";
+BG_RIGHT = "black";
 LOGO_COLOR = "royalblue";
 
 //      etats
@@ -23,8 +23,8 @@ FINI = "green";
 COMMENCE = "blue";
 ATTENTE = "purple";
 SKIP = "orange";
-DEFAULT = "black";
+DEFAULT = "lightgrey";
 
 //      taches
-JOUR = "royalblue";
+JOUR = "lightyellow";
 FLECHE = "white";

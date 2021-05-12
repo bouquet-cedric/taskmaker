@@ -13,9 +13,9 @@ B_RIGHT_ID = "btn_right";
 // COULEURS
 
 //      arrieres-plans
-FOND_TASK = "slategrey";
-BG_LEFT = "darkred";
-BG_RIGHT = "darkblue";
+FOND_TASK = "lightgrey";
+BG_LEFT = "transparent";
+BG_RIGHT = "transparent";
 LOGO_COLOR = "royalblue";
 
 //      etats

@@ -18,6 +18,7 @@ BG_LEFT = "black";
 BG_RIGHT = "black";
 LOGO_COLOR = "royalblue";
 BG_LINK = "black";
+BG_PAGE = "black";
 
 //      etats
 FINI = "green";

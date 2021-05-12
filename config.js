@@ -26,5 +26,6 @@ SKIP = "orange";
 DEFAULT = "lightgrey";
 
 //      taches
+TITRE = "white";
 JOUR = "lightyellow";
 FLECHE = "white";

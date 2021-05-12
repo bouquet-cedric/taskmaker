@@ -48,6 +48,7 @@ class Tache {
 function init(id, id2) {
     var fl = document.getElementById(id);
     if (fl != null) {
+        fl.style.backgroundColor = BG_LINK;
         var h2 = document.createElement("h2");
         var hr = document.createElement("hr");
         hr.classList.add("titre");
@@ -228,6 +229,7 @@ function testConfig() {
     test("BG_LEFT", checkColor);
     test("BG_RIGHT", checkColor);
     test("LOGO_COLOR", checkColor);
+    test("BG_LINK", checkColor);
     test("COMMENCE", checkColor);
     test("ATTENTE", checkColor);
     test("SKIP", checkColor);

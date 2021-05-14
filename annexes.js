@@ -36,6 +36,23 @@ class Tache {
     getEtat() {
         return this.etat;
     }
+    getState() {
+        switch (this.etat) {
+            case "F":
+                return "FINI";
+            case "A":
+                return "ATTENTE";
+            case "C":
+                return "COMMENCE";
+            case "S":
+                return "SKIP";
+            case "D":
+                return "DEFAULT";
+            default:
+                return "DEFAULT";
+        }
+        return "DEFAULT";
+    }
     getColor() {
         let tmp = this.getEtat();
         if (tmp != null) {
@@ -553,7 +570,7 @@ function toCsv(etat) {
             if (etat)
                 res += i + ";" + elt.en + "\n"
             else
-                res += i + ";" + elt.en + ';' + elt.etat + "\n"
+                res += i + ";" + elt.en + ';' + elt.getState() + "\n"
         }
     }
     var blob = new Blob([res], { type: "text/csv;charset=unicode" });

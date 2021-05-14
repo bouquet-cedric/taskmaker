@@ -538,16 +538,22 @@ function triTasks(etat) {
 }
 
 function toCsv(etat) {
-    let res = "Jours;Tâches [" + (etat || "all") + "]\n";
+    let res = "";
     let tab;
-    if (etat)
+    if (etat) {
+        res = "Jours;Tâches [" + (etat || "all") + "]\n";
         tab = triTasks(etat);
-    else
+    } else {
+        res = "Jours;Tâches [" + (etat || "all") + "]; statut \n";
         tab = tasks;
+    }
     for (let i in tab) {
         for (let j in tab[i]) {
             let elt = tab[i][j];
-            res += i + ";" + elt.en + "\n"
+            if (etat)
+                res += i + ";" + elt.en + "\n"
+            else
+                res += i + ";" + elt.en + ';' + elt.etat + "\n"
         }
     }
     var blob = new Blob([res], { type: "text/csv;charset=unicode" });

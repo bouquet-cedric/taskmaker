@@ -538,8 +538,12 @@ function triTasks(etat) {
 }
 
 function toCsv(etat) {
-    let res = "Jours;Tâches [" + etat + "]\n";
-    let tab = triTasks(etat);
+    let res = "Jours;Tâches [" + (etat || "all") + "]\n";
+    let tab;
+    if (etat)
+        tab = triTasks(etat);
+    else
+        tab = tasks;
     for (let i in tab) {
         for (let j in tab[i]) {
             let elt = tab[i][j];
@@ -547,14 +551,15 @@ function toCsv(etat) {
         }
     }
     var blob = new Blob([res], { type: "text/csv;charset=unicode" });
+    let filename = "export_" + (etat || "all") + ".csv";
     if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(blob, "export.csv");
+        navigator.msSaveBlob(blob, filename);
     } else {
         var link = document.createElement("a");
         if (link.download !== undefined) {
             var uri = URL.createObjectURL(blob);
             link.setAttribute("href", uri);
-            link.setAttribute("download", "export.csv");
+            link.setAttribute("download", filename);
             link.style.visibility = "hidden";
             document.body.appendChild(link);
             link.click();
@@ -565,30 +570,38 @@ function toCsv(etat) {
 
 function addForm() {
     let div = document.createElement("div");
-    let lbl = document.createElement("label");
     let input = document.createElement("input");
-    let choix = document.createElement("input");
+    let choix = document.createElement("select");
 
-    div.appendChild(lbl);
     div.appendChild(choix);
     div.appendChild(input);
     div.style.position = "fixed";
     div.style.bottom = "0";
     div.style.left = "0";
 
-
     input.type = "submit";
-    input.value = "Télécharger"
-
-    lbl.textContent = "Etat : ";
-    lbl.htmlFor = "choice";
-    lbl.style.color = "white";
+    input.value = "Télécharger";
 
     choix.id = 'choice';
 
+    for (let i in Etat) {
+        if (i != "get") {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = "Tâches [" + i + "]";
+            choix.appendChild(option);
+        }
+    }
+    let all = document.createElement("option");
+    all.value = "TOUTES";
+    all.textContent = "Toutes les tâches";
+    choix.appendChild(all);
     input.onclick = function() {
         let val = document.getElementById('choice');
-        toCsv(val.value);
+        let opt = val.options[val.selectedIndex];
+        let state = opt.value[0];
+        if (state != "T") toCsv(state);
+        else toCsv();
     }
     document.body.appendChild(div);
 }

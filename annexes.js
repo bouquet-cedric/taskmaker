@@ -8,7 +8,7 @@ const Etat = {
     COMMENCE: "C",
     ATTENTE: "A",
     SKIP: "S",
-    DEFAULT : "D",
+    DEFAULT: "D",
     get(letter) {
         switch (letter) {
             case "F":
@@ -239,7 +239,7 @@ function testConfig() {
     test("TITRE", checkColor);
     test("JOUR", checkColor);
     test("FLECHE", checkColor);
-    
+
 }
 
 function gereNum() {
@@ -307,7 +307,7 @@ function apply(tab, whats) {
             cpt++;
         }
     }
-    if (tab == tasks) color();
+    if (whats == "tasks") color(tab);
 }
 
 function end(id, color = "green") {
@@ -315,10 +315,10 @@ function end(id, color = "green") {
     sp.style.color = color;
 }
 
-function color() {
-    for (let i in tasks) {
-        for (let j in tasks[i]) {
-            var tache = tasks[i][j];
+function color(tab) {
+    for (let i in tab) {
+        for (let j in tab[i]) {
+            var tache = tab[i][j];
             if (tache.getEtat() != undefined) {
                 end(i + "_" + j, tache.getColor());
             }
@@ -349,7 +349,7 @@ function styleTitre(titreTag) {
     var titre = document.getElementsByTagName(titreTag);
     for (let i = 0; i < titre.length; i++) {
         titre[i].style.textAlign = "center";
-        titre[i].style.color=TITRE;
+        titre[i].style.color = TITRE;
         if (titreTag == "h2") {
             titre[i].style.marginTop = "0";
             titre[i].style.marginBottom = "0";
@@ -369,7 +369,7 @@ function styleJour() {
     for (let i = 0; i < days.length; i++) {
         days[i].style.color = JOUR;
         days[i].style.fontFamily = "cursive";
-        days[i].style.textDecoration = "underline solid "+JOUR;
+        days[i].style.textDecoration = "underline solid " + JOUR;
     }
 }
 
@@ -509,11 +509,88 @@ function logo() {
     divName.style.fontFamily = "monospace";
     divName.style.fontSize = "12px";
     divName.style.fontWeight = "bold";
-    divName.textContent = nameProduct();
+    divName.textContent = welcome() + nameProduct();
     document.body.appendChild(divName);
     divName.style.bottom = "0";
     divName.style.right = "0";
     divName.style.backgroundColor = LOGO_COLOR;
+}
+
+function triTasks(etat) {
+    // ACTIF_TASK = 1;
+    res = []
+    cpt = 0;
+    for (let i in tasks) {
+        cpt++;
+        for (let j in tasks[i]) {
+            let elt = tasks[i][j];
+            if (elt.getEtat() == etat) {
+                if (!(i in res)) {
+                    res[i] = [];
+                }
+                res[i].push(elt);
+            }
+        }
+    }
+    // apply(res, "tasks");
+    // stylize();
+    return res;
+}
+
+function toCsv(etat) {
+    let res = "Jours;Tâches [" + etat + "]\n";
+    let tab = triTasks(etat);
+    for (let i in tab) {
+        for (let j in tab[i]) {
+            let elt = tab[i][j];
+            res += i + ";" + elt.en + "\n"
+        }
+    }
+    var blob = new Blob([res], { type: "text/csv;charset=unicode" });
+    if (navigator.msSaveBlob) {
+        navigator.msSaveBlob(blob, "export.csv");
+    } else {
+        var link = document.createElement("a");
+        if (link.download !== undefined) {
+            var uri = URL.createObjectURL(blob);
+            link.setAttribute("href", uri);
+            link.setAttribute("download", "export.csv");
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else alert("Impossible de créer un blob");
+    }
+}
+
+function addForm() {
+    let div = document.createElement("div");
+    let lbl = document.createElement("label");
+    let input = document.createElement("input");
+    let choix = document.createElement("input");
+
+    div.appendChild(lbl);
+    div.appendChild(choix);
+    div.appendChild(input);
+    div.style.position = "fixed";
+    div.style.bottom = "0";
+    div.style.left = "0";
+
+
+    input.type = "submit";
+    input.value = "Télécharger"
+
+    lbl.textContent = "Etat : ";
+    lbl.htmlFor = "choice";
+    lbl.style.color = "white";
+
+    choix.id = 'choice';
+
+    input.onclick = function() {
+        let val = document.getElementById('choice');
+        toCsv(val.value);
+    }
+    document.body.appendChild(div);
 }
 
 window.onload = function() {
@@ -522,8 +599,9 @@ window.onload = function() {
 
     apply(liens, "liens");
     apply(tasks, "tasks");
-    stylize();
     console.log(welcome());
     console.log(nameProduct());
     if (LOGO === "ON" || LOGO === "on") logo();
+    stylize();
+    addForm();
 }

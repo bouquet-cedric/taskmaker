@@ -25,6 +25,7 @@ FINI = "green";
 COMMENCE = "blue";
 ATTENTE = "purple";
 SKIP = "orange";
+OTHER = "cyan";
 DEFAULT = "lightgrey";
 
 //      taches

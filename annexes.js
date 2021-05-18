@@ -8,6 +8,7 @@ const Etat = {
     COMMENCE: "C",
     ATTENTE: "A",
     SKIP: "S",
+    OTHER: "O", // TRAINING
     DEFAULT: "D",
     get(letter) {
         switch (letter) {
@@ -21,6 +22,8 @@ const Etat = {
                 return SKIP;
             case "D":
                 return DEFAULT;
+            case "O":
+                return OTHER;
             default:
                 return DEFAULT;
         }
@@ -48,6 +51,8 @@ class Tache {
                 return "SKIP";
             case "D":
                 return "DEFAULT";
+            case "O":
+                return "OTHER";
             default:
                 return "DEFAULT";
         }

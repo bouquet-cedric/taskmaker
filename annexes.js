@@ -257,6 +257,7 @@ function testConfig() {
     test("COMMENCE", checkColor);
     test("ATTENTE", checkColor);
     test("SKIP", checkColor);
+    test("OTHER", checkColor);
     test("DEFAULT", checkColor);
     test("TITRE", checkColor);
     test("JOUR", checkColor);

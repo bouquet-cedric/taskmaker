@@ -194,8 +194,10 @@ function checkOnOff(v) {
     if (v === "on") return true;
     if (v === "off") return true;
     if (v === "ON") return true;
+    if (v === "On") return true;
     if (v === "OFF") return true;
-    throw new IllegalValue(v, ["on", "off", "ON", "OFF"], "string");
+    if (v === "Off") return true;
+    throw new IllegalValue(v, ["on", "off", "ON", "OFF", "On", "Off"], "string");
 }
 
 function checkColor(v) {
@@ -601,6 +603,9 @@ function addForm() {
     let div = document.createElement("div");
     let input = document.createElement("input");
     let choix = document.createElement("select");
+    let colorOptions = "yellow";
+    let bgColorOptions = "black";
+    let before = "\u2576";
 
     div.appendChild(choix);
     div.appendChild(input);
@@ -612,17 +617,23 @@ function addForm() {
     input.value = "Télécharger";
 
     choix.id = 'choice';
+    choix.style.backgroundColor = "transparent";
+    choix.style.color = "white";
 
     for (let i in Etat) {
         if (i != "get") {
             let option = document.createElement("option");
             option.value = i;
-            option.textContent = "Tâches [" + i + "]";
+            option.textContent = before + " Tâches [" + i + "]";
+            option.style.color = colorOptions;
+            option.style.backgroundColor = bgColorOptions;
             choix.appendChild(option);
         }
     }
     let all = document.createElement("option");
     all.value = "TOUTES";
+    all.style.color = colorOptions;
+    all.style.backgroundColor = bgColorOptions;
     all.textContent = "Toutes les tâches";
     choix.appendChild(all);
     input.onclick = function() {

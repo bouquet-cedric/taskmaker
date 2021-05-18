@@ -1,7 +1,7 @@
 // CONFIGURATIONS
 NB_DAY_BY_PAGE = 5;
 ACTIVE_PAGE = false;
-LOGO = "ON";
+LOGO = "off";
 
 //ID
 DIV_LINK_ID = "fl";
